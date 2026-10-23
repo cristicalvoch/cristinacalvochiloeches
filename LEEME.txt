@@ -1,0 +1,8 @@
+PUBLICAR LA WEB
+
+1. Extrae este ZIP.
+2. Sube index.html, las carpetas imagenes y videos y el archivo .nojekyll a la raiz de tu repositorio de GitHub. No subas el ZIP sin extraer ni la carpeta contenedora.
+3. Activa GitHub Pages para publicar desde la rama y carpeta donde has subido los archivos.
+
+Mantén los nombres de los archivos y las carpetas para conservar los enlaces.
+También puedes abrir index.html en tu ordenador para revisar la web.

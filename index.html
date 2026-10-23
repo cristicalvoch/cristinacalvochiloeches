@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristina Calvo — Product Designer</title>
+<style>
+@font-face{
+  font-family:NATS;
+  src:local("Arial");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#fff;
+  color:#000;
+  font-family:NATS,Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+}
+a{color:inherit;text-decoration:none}
+nav{
+  position:fixed;
+  top:0;left:0;width:100%;
+  padding:22px 28px;
+  display:flex;
+  justify-content:space-between;
+  z-index:20;
+  mix-blend-mode:difference;
+  color:#fff;
+  font-size:13px;
+}
+nav .links{display:flex;gap:28px}
+.hero{
+  position:relative;
+  min-height:100svh;
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:28px;
+  overflow:hidden;
+  isolation:isolate;
+  color:#fff;
+  background:#222;
+}
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  pointer-events:none;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.02) 42%,rgba(0,0,0,.32) 100%);
+}
+.hero-wipe{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:var(--wipe-height, 0%);
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.25) 4%,#fff 16%,#fff 100%);
+  will-change:height,background;
+  transition:height .04s linear;
+}
+.hero.is-wiped .hero-wipe{
+  height:100%;
+  background:#fff;
+}
+.hero.is-wiped h1,.hero.is-wiped .hero-meta{
+  visibility:hidden;
+}
+.hero h1,.hero-meta{position:relative;z-index:1;}
+.hero h1{
+  font-size:clamp(62px,13vw,190px);
+  line-height:.78;
+  font-weight:400;
+  margin:0;
+  letter-spacing:-.06em;
+}
+.hero-meta{
+  display:flex;
+  justify-content:space-between;
+  margin-top:34px;
+  font-size:12px;
+}
+.section-title{
+  padding:24px 28px 12px;
+  font-size:12px;
+  border-top:1px solid #000;
+}
+.project{
+  padding:0 28px 110px;
+}
+.project-head{
+  display:grid;
+  grid-template-columns:70px 1fr auto;
+  gap:20px;
+  align-items:baseline;
+  padding:12px 0 18px;
+  font-size:13px;
+}
+.project-head .number{font-size:12px}
+.project-head .category{opacity:.55}
+.image{
+  width:100%;
+  aspect-ratio:16/10;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.image span{
+  font-size:12px;
+  opacity:.45;
+}
+.project-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  padding-top:16px;
+  font-size:11px;
+  line-height:1.5;
+}
+.project-info p{margin:0}
+.about{
+  padding:120px 28px;
+  border-top:1px solid #000;
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+}
+.about h2{
+  margin:0;
+  font-size:clamp(40px,7vw,95px);
+  font-weight:400;
+  line-height:.88;
+  letter-spacing:-.05em;
+}
+.about-copy{
+  font-size:14px;
+  line-height:1.45;
+  text-transform:none;
+}
+.about-copy p{margin:0 0 24px}
+.contact{
+  min-height:70vh;
+  padding:28px;
+  border-top:1px solid #000;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.contact-title{
+  font-size:clamp(55px,12vw,170px);
+  line-height:.8;
+  letter-spacing:-.06em;
+  font-weight:400;
+}
+.contact-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:20px;
+  font-size:12px;
+}
+footer{
+  padding:20px 28px;
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid #000;
+  font-size:10px;
+}
+@media(max-width:700px){
+ nav{padding:16px}
+ nav .links{gap:14px}
+ .hero,.project,.about,.contact{padding-left:16px;padding-right:16px}
+ .hero-meta{font-size:10px}
+ .project-head{grid-template-columns:42px 1fr;gap:8px}
+ .project-head .category{grid-column:2}
+ .project-info,.about-grid,.contact-bottom{grid-template-columns:1fr}
+ .about{padding-top:80px;padding-bottom:80px}
+}
+
+
+.optical-collection{width:100%;display:flex;flex-direction:column;gap:0}
+.optical-collection figure{margin:0}
+.optical-collection img{display:block;width:100%;height:auto}
+.collection-cover{width:100%;background:#e8e5e0}
+.collection-cover img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.collection-caption{display:flex;justify-content:space-between;gap:20px;padding:12px 0 42px;font-size:11px;letter-spacing:.04em}
+.collection-wide{margin-bottom:42px!important}
+.collection-wide img{width:100%;height:auto}
+.collection-wide figcaption,.collection-campaign figcaption{font-size:10px;opacity:.6;padding-top:9px}
+.collection-campaign{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:4px}
+.collection-campaign img{width:100%;height:auto;object-fit:cover}
+@media(max-width:700px){
+ .collection-caption{padding-bottom:28px;font-size:10px}
+ .collection-wide{margin-bottom:28px!important}
+ .collection-campaign{grid-template-columns:1fr;gap:26px}
+}
+
+
+/* OPTICAL PRODUCT: estilos limitados al bloque 01 para evitar efectos en el resto del sitio. */
+.optical-project { --optical-film-ratio: 2048 / 1152; --optical-gap: clamp(12px, 2.2vw, 32px); }
+.optical-project .optical-collection { gap: 0; }
+/* Dos referencias en paralelo antes del catálogo. */
+.optical-project .optical-reference-grid,
+.optical-project .optical-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3.5vw, 52px) var(--optical-gap);
+  width: 100%;
+  align-items: start;
+}
+.optical-project .optical-reference-grid { margin-bottom: clamp(32px, 5vw, 72px); }
+.optical-project .optical-product-grid { margin-bottom: 32px; }
+.optical-project .optical-reference-grid > figure,
+.optical-project .optical-product-grid > figure { margin: 0 !important; min-width: 0; }
+/* Cada imagen conserva su proporción y muestra el producto completo, sin recortes. */
+.optical-project .optical-reference-grid img,
+.optical-project .optical-product-grid img {
+  display: block; width: 100%; height: auto; background: #f5f5f3;
+}
+.optical-project .optical-reference-grid figcaption,
+.optical-project .optical-product-grid figcaption {
+  margin: 0; padding: 12px 0 0; color: #626262;
+  font-size: clamp(9px, .8vw, 11px); line-height: 1.5;
+  letter-spacing: .06em; overflow-wrap: anywhere;
+}
+/* El formato de la celda del vídeo se ajusta a la imagen de MARCEL mediante aspect-ratio. */
+.optical-project .optical-film-stage {
+  width: 100%; aspect-ratio: var(--optical-film-ratio, 16 / 9);
+  background: #f5f5f3; display: flex; align-items: center; justify-content: center;
+}
+.optical-project .optical-film video {
+  display: block; width: 100%; height: 100%; object-fit: contain;
+}
+.optical-project .optical-film video:focus-visible { outline: 2px solid #202020; outline-offset: 4px; }
+@media (max-width: 700px) {
+  .optical-project { --optical-gap: 12px; }
+  /* Se mantienen expresamente DOS columnas en móvil. */
+  .optical-project .optical-reference-grid,
+  .optical-project .optical-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+  .optical-project .optical-product-grid figcaption,
+  .optical-project .optical-reference-grid figcaption { padding-top: 8px; letter-spacing: .025em; }
+}
+
+
+/* SUN GLASSES: cambios limitados a la sección 03. */
+.sunglasses-project .sunglasses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2.2vw, 32px);
+  width: 100%;
+  align-items: start;
+  margin-bottom: 42px;
+}
+.sunglasses-project .sunglasses-grid > .collection-wide {
+  min-width: 0;
+  margin: 0 !important;
+}
+.sunglasses-project .sunglasses-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sunglasses-project .sunglasses-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 700px) {
+  .sunglasses-project .sunglasses-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+}
+
+
+/* 02 OPTICAL PRODUCTS: vídeo y páginas después de COLOR CARD. */
+.optical-products-project .optical-products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2.2vw, 32px);
+  width: 100%;
+  align-items: start;
+  margin-bottom: 42px;
+}
+.optical-products-project .optical-products-grid > figure {
+  margin: 0 !important;
+  min-width: 0;
+}
+.optical-products-project .optical-products-grid img,
+.optical-products-project .optical-products-grid video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 700px) {
+  .optical-products-project .optical-products-grid {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+}
+
+/* Deslizamiento lateral automático, solo imágenes 2 y 3 del apartado 01.
+   Cada imagen permanece 2,7 s; el cambio lateral dura 0,3 s. */
+#optical-product .fw26-fast-lateral {
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 42px;
+}
+#optical-product .fw26-fast-lateral > figure {
+  grid-area: 1 / 1;
+  min-width: 0;
+  margin: 0 !important;
+  background: #fff;
+  animation: fw26-fast-first 6s ease-in-out infinite;
+}
+#optical-product .fw26-fast-lateral > figure:nth-child(2) {
+  animation-name: fw26-fast-second;
+}
+@keyframes fw26-fast-first {
+  0%, 45%, 100% { transform: translateX(0); }
+  50%, 95% { transform: translateX(-100%); }
+}
+@keyframes fw26-fast-second {
+  0%, 45%, 100% { transform: translateX(100%); }
+  50%, 95% { transform: translateX(0); }
+}
+@media (max-width: 700px) {
+  #optical-product .fw26-fast-lateral { margin-bottom: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #optical-product .fw26-fast-lateral { display: block; }
+  #optical-product .fw26-fast-lateral > figure { animation: none; }
+}
+/* SPRING SUMMER 27: scroll lateral solo de INSPIRATION y COLOR CARD. */
+.optical-products-project .ss27-fast-lateral {
+  display: grid;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 42px;
+}
+.optical-products-project .ss27-fast-lateral > figure {
+  grid-area: 1 / 1;
+  min-width: 0;
+  margin: 0 !important;
+  background: #fff;
+  animation: ss27-fast-first 6s ease-in-out infinite;
+}
+.optical-products-project .ss27-fast-lateral > figure:nth-child(2) {
+  animation-name: ss27-fast-second;
+}
+@keyframes ss27-fast-first {
+  0%, 45%, 100% { transform: translateX(0); }
+  50%, 95% { transform: translateX(-100%); }
+}
+@keyframes ss27-fast-second {
+  0%, 45%, 100% { transform: translateX(100%); }
+  50%, 95% { transform: translateX(0); }
+}
+@media (max-width: 700px) {
+  .optical-products-project .ss27-fast-lateral { margin-bottom: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .optical-products-project .ss27-fast-lateral { display: block; }
+  .optical-products-project .ss27-fast-lateral > figure { animation: none; }
+}
+
+/* Referencias de la coleccion 01 a todo el ancho. */
+.optical-project .optical-reference-grid > figure { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+<br>
+<nav>
+  <a href="#top">C.C</a>
+  <div class="links">
+    <a href="#work">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</nav>
+<br>
+<main id="top">
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+    <source src="videos/video-externo-01.mp4" type="video/mp4">
+  </video>
+  <div class="hero-wipe" aria-hidden="true"></div>
+  <h1>CRISTINA<br>CALVO</h1>
+  <div class="hero-meta">
+    <span>PRODUCT DESIGNER / FASHION / OPTICAL / SPORT</span>
+    <span>MADRID — SPAIN</span>
+  </div>
+</section>
+<br>
+
+<br>
+<section id="work">
+  <div class="section-title">SELECTED WORK</div>
+<br>
+  <article class="project optical-project" id="optical-product">
+    <div class="project-head">
+      <span class="number">01</span>
+      <span>FALL WINTER 26/27</span>
+      <span class="category">EYEWEAR COLLECTION</span>
+    </div>
+    <div class="optical-collection">
+      <figure class="collection-cover">
+        <img src="imagenes/imagen-01.jpg" alt="City Perspectives — FW26/27 eyewear collection cover">
+      </figure>
+      <div class="collection-caption"><span>CITY PERSPECTIVES</span><span>FW26/27 COLLECTION</span></div>
+      <div class="fw26-fast-lateral" role="region" aria-label="Inspiración y carta de colores FW26/27">
+<figure class="collection-wide">
+        <img src="imagenes/imagen-02.jpg" alt="City Perspectives inspiration moodboard">
+        <figcaption>INSPIRATION / ART / ARCHITECTURE / URBAN CULTURE</figcaption>
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-03.jpg" alt="Eyewear acetate colour card with frame shapes and colourways">
+        <figcaption>COLOUR CARD / JIMEI ACETATE</figcaption>
+      </figure>
+      </div>
+      <!-- Referencias: imagen izquierda STYLING & VISUAL DIRECTION; imagen derecha CAMPAIGN REFERENCES. -->
+      <div class="optical-reference-grid">
+        <figure><img src="imagenes/imagen-04.jpg" alt="Eyewear styling and campaign references"></figure>
+        <figure><img src="imagenes/imagen-05.jpg" alt="Eyewear campaign references and frame styling"></figure>
+      </div>
+      <!-- Catálogo: dos columnas por fila, también en móvil. Orden de lectura por filas. -->
+      <div class="optical-product-grid">
+        <!-- Fila 1, columna 1: imagen de producto KATE. -->
+        <figure class="optical-product-card">
+        <img loading="lazy" decoding="async" src="imagenes/imagen-06.jpg" alt="Kate eyewear design — frame details and colourways">
+        <figcaption>KATE / FRAME DETAILS / COLOURWAYS</figcaption>
+      </figure>
+        <!-- Fila 1, columna 2: imagen de producto JUNE. -->
+        <figure class="optical-product-card">
+        <img loading="lazy" decoding="async" src="imagenes/imagen-07.jpg" alt="June eyewear design — frame details and colourways">
+        <figcaption>JUNE / FRAME DETAILS / COLOURWAYS</figcaption>
+      </figure>
+        <!-- Fila 2, columna 1: imagen de producto DYLAN. -->
+        <figure class="optical-product-card">
+        <img loading="lazy" decoding="async" src="imagenes/imagen-08.jpg" alt="Dylan eyewear design — frame details and colourways">
+        <figcaption>DYLAN / FRAME DETAILS / COLOURWAYS</figcaption>
+      </figure>
+        <!-- Fila 2, columna 2: imagen de producto OLIVIA. -->
+        <figure class="optical-product-card">
+        <img loading="lazy" decoding="async" src="imagenes/imagen-09.jpg" alt="Olivia eyewear design — frame details and colourways">
+        <figcaption>OLIVIA / FRAME DETAILS / COLOURWAYS</figcaption>
+      </figure>
+        <!-- Fila 3, columna 1: imagen de producto MARCEL. -->
+        <figure class="optical-product-card">
+        <img loading="lazy" decoding="async" src="imagenes/imagen-10.jpg" alt="Marcel eyewear design — frame details and colourways">
+        <figcaption>MARCEL / FRAME DETAILS / COLOURWAYS</figcaption>
+      </figure>
+        <!-- Fila 3, columna 2: vídeo adjunto, situado en el hueco junto a MARCEL.
+             El vídeo está integrado en el HTML. Para producción puede sustituirse el src por una URL MP4. -->
+        <figure class="optical-product-card optical-film">
+          <div class="optical-film-stage">
+            <video muted playsinline preload="metadata" aria-label="Vídeo de la colección óptica" autoplay loop>
+              <source src="videos/video-01.mp4" type="video/mp4">
+              Tu navegador no admite vídeo HTML5.
+            </video>
+          </div>
+          <figcaption>COLLECTION / MOTION</figcaption>
+        </figure>
+      </div>
+
+    </div>
+    <div class="project-info">
+      <p>FW26/27 / CITY PERSPECTIVES / TREND RESEARCH / INSPIRATION / ACETATE COLOUR DIRECTION</p>
+      <p>A CONTEMPORARY EYEWEAR COLLECTION INSPIRED BY THE CONTRASTS OF THE CITY, ART AND ARCHITECTURE. FROM VISUAL RESEARCH AND COLOUR DEVELOPMENT TO PRODUCT STYLING AND COLLECTION DIRECTION.</p>
+    </div>
+  </article>
+<br>
+  <article class="project optical-products-project">
+    <div class="project-head">
+      <span class="number">02</span>
+      <span>SPRING SUMMER 27</span>
+      <span class="category">EYEWEAR COLLECTION</span>
+    </div>
+    <div class="optical-collection">
+      <!-- Vídeo de apertura de 02 OPTICAL PRODUCTS. -->
+      <figure class="collection-wide">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de Optical Products" style="display:block;width:100%;height:auto;">
+          <source src="videos/video-02.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <div class="ss27-fast-lateral" role="region" aria-label="Inspiration y Color Card">
+<figure class="collection-wide">
+        <img src="imagenes/imagen-11.jpg" alt="Quiet Craft eyewear portfolio — page 03">
+      </figure>
+<figure class="collection-wide">
+        <img src="imagenes/imagen-12.jpg" alt="Quiet Craft eyewear portfolio — page 05">
+      </figure>
+      </div>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-13.jpg" alt="Quiet Craft eyewear portfolio — page 04">
+      </figure>
+      
+      <!-- Vídeo y páginas posteriores a COLOR CARD: cuadrícula de dos columnas. -->
+      <div class="optical-products-grid">
+        <figure class="collection-wide">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de producto Optical Products">
+            <source src="videos/video-03.mp4" type="video/mp4">
+          </video>
+        </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-14.jpg" alt="Quiet Craft eyewear portfolio — page 07">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-15.jpg" alt="Quiet Craft eyewear portfolio — page 08">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-16.jpg" alt="Quiet Craft eyewear portfolio — page 09">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-17.jpg" alt="Quiet Craft eyewear portfolio — page 10">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-18.jpg" alt="Quiet Craft eyewear portfolio — page 11">
+      </figure>
+      </div>
+    </div>
+    <div class="project-info">
+      <p>SS27 / CONTEMPORARY ART / CRAFT / MINIMALISM / NOBLE MATERIALS</p>
+      <p>A CONTEMPORARY OPTICAL LANGUAGE BUILT AROUND MATERIALITY, PROPORTION, DETAIL AND QUIET LUXURY.</p>
+    </div>
+  </article>
+<br>
+  <article class="project sunglasses-project" id="sun-glasses">
+    <div class="project-head">
+      <span class="number">03</span>
+      <span>SPRING SUMMER 26</span>
+      <span class="category"></span>
+    </div>
+    <div class="optical-collection">
+      <!-- Vídeo adjunto: al principio de la sección, antes de las imágenes. -->
+      <figure class="collection-wide sunglasses-film">
+        <video muted playsinline preload="metadata" aria-label="Vídeo de la colección Sun Glasses" autoplay loop>
+          <source src="videos/video-04.mp4" type="video/mp4">
+          Tu navegador no admite vídeo HTML5.
+        </video>
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-19.jpg" alt="SS26 March eyewear portfolio — page 02">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-20.jpg" alt="SS26 March eyewear portfolio — page 04">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-21.jpg" alt="SS26 March eyewear portfolio — page 05">
+      </figure>
+      <!-- Últimas cuatro imágenes originales: cuadrícula de dos columnas. -->
+      <div class="sunglasses-grid">
+<figure class="collection-wide">
+        <img src="imagenes/imagen-22.jpg" alt="SS26 March eyewear portfolio — page 07">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-23.jpg" alt="SS26 March eyewear portfolio — page 08">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-24.jpg" alt="SS26 March eyewear portfolio — page 09">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-25.jpg" alt="SS26 March eyewear portfolio — page 10">
+      </figure>
+      </div>
+    </div>
+    <div class="project-info">
+      <p></p>
+      <p></p>
+    </div>
+  </article>
+<br>
+  <article class="project">
+    <div class="project-head">
+      <span class="number"></span>
+      <span>ACCESSORIES</span>
+      <span class="category">PRODUCT CONCEPT</span>
+    </div>
+    <div class="image"><video autoplay muted loop playsinline preload="auto" aria-label="Sport accessories" style="display:block;width:100%;height:100%;object-fit:contain;"><source src="videos/video-05.mp4" type="video/mp4"></video></div>
+    <div class="optical-collection">
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-26.jpg" alt="SS27 eyewear accessories portfolio — page 07">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-27.jpg" alt="SS27 eyewear accessories portfolio — page 08">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-28.jpg" alt="SS27 eyewear accessories portfolio — page 09">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-29.jpg" alt="SS27 eyewear accessories portfolio — page 10">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-30.jpg" alt="SS27 eyewear accessories portfolio — page 11">
+      </figure>
+      <figure class="collection-wide">
+        <img src="imagenes/imagen-31.jpg" alt="SS27 eyewear accessories portfolio — page 12">
+      </figure>
+    </div>
+    <div class="project-info">
+      <p>ACCESSORIES / EYEWEAR / MOODBOARD / POSITIONING / BRAND LANGUAGE</p>
+      <p>EXTENDING THE SPORT OFFER THROUGH ACCESSORIES AND A COHERENT VISUAL LANGUAGE CONNECTED TO THE COLLECTION.</p>
+    </div>
+  </article>
+<br>
+
+
+
+
+
+</section>
+<br>
+<section id="about" class="about">
+  <div class="about-grid">
+    <h2>DESIGN<br>WITH<br>CONTEXT.</h2>
+    <div class="about-copy">
+      <p>Soy Cristina Calvo, diseñadora de producto especializada en tendencias de moda, productos ópticos, accesorios, moda masculina y ropa deportiva.</p>
+      <p>Mi trabajo combina la investigación de tendencias, la estrategia de producto, el diseño y el desarrollo técnico con la creación de la identidad visual de cada colección, aplicada a través del merchandising, el escaparatismo y el marketing.</p>
+      <p>Hoy, la dirección de arte y el conocimiento de la moda y las tendencias van más allá de crear productos atractivos y funcionales. También implican definir un concepto creativo y transmitirlo a los equipos de marketing mediante una estrategia visual alineada con las tendencias actuales y la identidad de marca, con el objetivo de conectar con el público, diferenciar cada colección y potenciar las ventas.</p>
+      <p>Las imágenes y los vídeos de este portfolio se han creado mediante inteligencia artificial a partir de imágenes de otras marcas, como ejercicios de exploración creativa, sin vinculación con dichas marcas. Los derechos sobre los materiales originales pertenecen a sus respectivos titulares.</p>
+      <p>I’m Cristina Calvo, a product designer specialising in fashion trends, eyewear, accessories, menswear and sportswear.</p>
+      <p>My work combines trend research, product strategy, design and technical development with the creation of each collection’s visual identity, expressed through visual merchandising, window displays and marketing.</p>
+      <p>Today, art direction and an understanding of fashion and trends go beyond creating attractive, functional products. They also involve defining a creative concept and communicating it to marketing teams through a visual strategy aligned with current trends and brand identity. The goal is to connect with audiences, set each collection apart and drive sales.</p>
+      <p>The images and videos in this portfolio have been created using artificial intelligence, based on images from other brands, as creative exploration exercises. They are not affiliated with or endorsed by those brands. All rights to the original materials belong to their respective owners.</p>
+    </div>
+  </div>
+</section>
+<br>
+<section id="contact" class="contact">
+  <div class="contact-title">LET'S<br>WORK<br>TOGETHER</div>
+  <div class="contact-bottom">
+    <div>MADRID / SPAIN</div>
+    <div style="text-transform:none;"><a href="mailto:cristicalvoch@gmail.com">cristicalvoch@gmail.com</a><br>phone: <a href="tel:+34686922923">(+34) 686922923</a></div>
+    <div>
+      <a href="#">INSTAGRAM</a><br>
+      <a href="https://www.linkedin.com/in/cristina-calvo-chiloeches-92a37153" style="text-transform:none">www.linkedin.com/in/cristina-calvo-chiloeches-92a37153</a>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  let ticking = false;
+  const updateWipe = () => {
+    const viewport = window.innerHeight || document.documentElement.clientHeight;
+    const progress = Math.max(0, Math.min(1, window.scrollY / (viewport * 0.9)));
+    hero.style.setProperty('--wipe-height', (progress * 100) + '%');
+    hero.classList.toggle('is-wiped', progress >= 0.985);
+    ticking = false;
+  };
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateWipe);
+      ticking = true;
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  updateWipe();
+})();
+</script>
+<br>
+<footer>
+  <span>CRISTINA CALVO</span>
+  <span>PRODUCT DESIGN / 2026</span>
+</footer>
+<br>
+</body>
+</html>
